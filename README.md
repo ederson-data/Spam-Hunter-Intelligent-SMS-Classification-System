@@ -1,27 +1,31 @@
-# Spam-Hunter-Intelligent-SMS-Classification-System
-## 📖 Overview Recruited by the Digital Communications Intelligence Unit (DCIU), this project aims to protect users from the growing threat of mobile phishing and spam. Using Natural Language Processing (NLP) and Machine Learning, I built a classifier that identifies spam messages with a high degree of precision.
-## 🎯 Project Objective
-- Process and clean raw SMS data using Python and Regex.
-- Convert text into numerical features using **TF-IDF Vectorization**.
-- Train and evaluate **Naive Bayes** and **Logistic Regression** models.
-- Analyze the linguistic differences between "Ham" (legitimate) and "Spam" messages.
+SMS Spam Hunter: NLP & Machine Learning Project 🛡️
+1. Project Overview
+This repository contains the intelligence system developed for the Digital Communications Intelligence Unit (DCIU). The mission was to build a robust machine learning classifier to detect and flag SMS spam before it reaches users. Using Python and Natural Language Processing (NLP), this system identifies the "smoking guns" of phishing and spam messages with high accuracy.
 
-## 🛠️ Tech Stack
-- **Language:** Python
-- **Libraries:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
-- **NLP Techniques:** Tokenization, Stop-word removal, TF-IDF Vectorization, Regex cleaning
 
-## 📊 Key Results
-The model achieved an overall **Accuracy of 96.32%**.
 
-| Metric | Ham (Legitimate) | Spam |
-| :--- | :--- | :--- |
-| **Precision** | 96% | 100% |
-| **Recall** | 100% | 71% |
+2. Key Findings
+Our exploratory data analysis revealed significant behavioral differences between legitimate (Ham) and fraudulent (Spam) messages:
 
-**Key Insight:** The model achieved **100% Precision for Spam**, meaning it has a 0% false-alarm rate—no legitimate messages were accidentally blocked during testing.
+The Length Factor: Spam messages are nearly double the length of legitimate messages, averaging 137.89 characters compared to 70.46 characters for "Ham".
 
-## 📈 Insights & Findings
-1. **The "Free" Factor:** The word "Free" is the #1 predictor of spam, appearing in nearly 40% of all spam messages.
-2. **Message Length:** Spam messages are significantly longer on average (~140-160 characters) compared to ham messages, which are typically shorter conversational bursts.
-3. **Zero False Positives:** The Naive Bayes model proved exceptionally safe for production as it never misclassified a "Ham" message as "Spam."
+Targeted Vocabulary: Fraudulent messages rely on high-urgency keywords such as 'Call' (303 occurrences), 'Free' (188), and 'Now' (156).
+
+3. Data Preprocessing & Cleaning
+To meet the rigorous standards of the DCIU field assignment, the following data pipeline was implemented:
+
+Deduplication: Reduced the initial 5,572 records down to 5,169 unique messages to prevent model bias.
+
+Normalization: All text was lowercased, stripped of punctuation, and filtered for common "stop words" to isolate the primary intent of the communication.
+
+Vectorization: Utilized TF-IDF Vectorization to weigh the importance of specific keywords across the dataset.
+
+4. Model Performance
+The system uses a Multinomial Naive Bayes classifier, achieving the following metrics:
+
+Overall Accuracy: 95%.
+
+Spam Precision: 100% (Every message flagged as spam was correctly identified, ensuring zero false positives for critical business communications).
+
+
+Spam Recall: 63% (The system is currently tuned to be conservative to avoid blocking legitimate messages).
